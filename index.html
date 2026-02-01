@@ -1,19 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Route Wind & Step Climb</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <!-- Leaflet CSS -->
-  <link
-    rel="stylesheet"
-    href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
-  />
-
-  <link rel="stylesheet" href="style.css">
-
-  <!-- Leaflet JS -->
-  <script
-    src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
-    defer
-  ></script>
+<meta charset="UTF-8">
+<title>Route Wind & Step Climb</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="lib/leaflet.css">
+<script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
 </head>
+<body>
+<div id="controls">
+<input id="from" value="UUEE">
+<input id="to" value="LTFM">
+<input id="stepProfile" value="FL280/300NM, FL320/1:20, FL360/END">
+<button id="calculate">CALCULATE</button>
+</div>
+<div id="map"></div>
+<script type="module" src="app.js"></script>
+</body>
+</html>
