@@ -1,5 +1,3 @@
-js
-
 console.log("App.js loaded");
 import {parseStepClimb} from './core/parser.js';
 import {buildRoutePoints,enrichRoute} from './core/route.js';
