@@ -2,7 +2,9 @@ import {parseStepClimb} from './core/parser.js';
 import {buildRoutePoints,enrichRoute} from './core/route.js';
 import airports from './data/airports.json' assert {type:'json'};
 
-const map=L.map("map", { worldCopyJump: true });
+const map = L.map("map", {
+  worldCopyJump: true
+}).setView([50, 30], 4);
 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{maxZoom:10}).addTo(map);
 let routeLayer;
 
