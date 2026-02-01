@@ -1,21 +1,112 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>Route Wind & Step Climb</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="stylesheet"
- href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
-<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" defer></script>
+  <meta charset="utf-8">
+  <title>Route Wind & Step Climb</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Leaflet CSS + JS -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" defer></script>
+
+  <!-- Minimal page styles so the map renders and controls are usable -->
+  <style>
+    /* Fill the viewport and remove default margins */
+    html, body {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+      font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      background: #f7f7f7;
+    }
+
+    /* Make the page a column so the map can flex-grow */
+    body {
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    /* Controls panel */
+    #controls {
+      position: absolute;
+      top: 12px;
+      left: 12px;
+      z-index: 1000;
+      background: #fff;
+      border-radius: 8px;
+      padding: 10px;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.12);
+      display: flex;
+      gap: 8px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    #controls label {
+      font-size: 12px;
+      color: #333;
+      margin-right: 6px;
+    }
+
+    #controls input {
+      padding: 6px 8px;
+      font-size: 14px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+
+    #controls button {
+      padding: 7px 10px;
+      border: none;
+      background: #0078d4;
+      color: #fff;
+      border-radius: 4px;
+      cursor: pointer;
+      font-weight: 600;
+    }
+
+    #controls button:hover { filter:brightness(.95); }
+
+    /* Map container must have height to render */
+    #map {
+      flex: 1 1 auto;
+      min-height: 0; /* allow flexbox to shrink properly */
+    }
+
+    /* Provide a fallback message area when JS is disabled */
+    noscript {
+      display: block;
+      padding: 12px;
+      background: #fff3cd;
+      color: #856404;
+      border-radius: 6px;
+      margin: 12px;
+      font-size: 14px;
+    }
+  </style>
 </head>
 <body>
-<div id="controls">
-<input id="from" value="UUEE">
-<input id="to" value="LTFM">
-<input id="stepProfile" value="FL280/300NM, FL320/1:20, FL360/END">
-<button id="calculate">CALCULATE</button>
-</div>
-<div id="map"></div>
-<script type="module" src="app.js"></script>
+  <div id="controls" aria-label="Map controls">
+    <label for="from">From</label>
+    <input id="from" value="UUEE" aria-label="From airport" />
+
+    <label for="to">To</label>
+    <input id="to" value="LTFM" aria-label="To airport" />
+
+    <label for="stepProfile">Step profile</label>
+    <input id="stepProfile" value="FL280/300NM, FL320/1:20, FL360/END" aria-label="Step climb profile" style="min-width:220px" />
+
+    <button id="calculate">CALCULATE</button>
+  </div>
+
+  <div id="map" role="region" aria-label="Route map"></div>
+
+  <noscript>
+    JavaScript is required to display the map and calculate the route. Please enable JavaScript in your browser.
+  </noscript>
+
+  <!-- Your application module (keeps module script for modern JS) -->
+  <script type="module" src="app.js"></script>
 </body>
 </html>
